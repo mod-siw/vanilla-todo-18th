@@ -27,9 +27,11 @@ const printTodoItem = (text) => {
 
   todoItem.className = "todo-list-item";
   todoText.className = "todo-item-text";
-  todoText.innerText = text;
 
-  // todo 삭제 + 이동
+  todoText.innerText = text;
+  todoText.addEventListener("click", toggleTodoToDone);
+
+  // todo 삭제
   todoDel.innerText = "X";
   todoDel.className = "todo-delete-button";
   todoDel.addEventListener("click", deleteTodoItem);
@@ -47,6 +49,47 @@ const printTodoItem = (text) => {
 const deleteTodoItem = (e) => {
   const target = e.target.parentNode; //해당 todo item 다 삭제해야 하므로 이동
   document.querySelector(".todo-list").removeChild(target);
+};
+
+/* todo -> done 이동 + done 표시 */
+
+// todo -> done 이동
+const toggleTodoToDone = (e) => {
+  deleteTodoItem(e);
+  printDoneItem(e.target.innerText);
+};
+
+// 끝낸 일 출력
+const printDoneItem = (text) => {
+  const doneItem = document.createElement("li");
+  const doneText = document.createElement("span");
+  const doneDel = document.createElement("button");
+
+  doneText.innerText = text;
+  doneText.className = "done-item-text";
+  doneText.addEventListener("click", toggleDoneToDo);
+
+  doneDel.innerText = "X";
+  doneDel.className = "done-delete-button";
+  doneDel.addEventListener("click", deleteDoneItem);
+
+  doneItem.className = "done-list-item";
+  doneItem.appendChild(doneText);
+  doneItem.appendChild(doneDel);
+
+  document.querySelector(".done-list").appendChild(doneItem);
+};
+
+// 끝낸 일 삭제
+const deleteDoneItem = (e) => {
+  const target = e.target.parentNode;
+  document.querySelector(".done-list").removeChild(target);
+};
+
+// done -> todo 이동
+const toggleDoneToDo = (e) => {
+  deleteDoneItem(e);
+  printTodoItem(e.target.innerText);
 };
 
 // 시작 함수

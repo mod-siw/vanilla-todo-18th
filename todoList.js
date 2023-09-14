@@ -3,6 +3,7 @@ const form = document.querySelector(".todo-form");
 
 const init = () => {
   form.addEventListener("submit", addTodoItem);
+  btn.addEventListener("click", displayForm);
 };
 
 /* todo 추가 + 삭제 기능 */
@@ -90,6 +91,17 @@ const deleteDoneItem = (e) => {
 const toggleDoneToDo = (e) => {
   deleteDoneItem(e);
   printTodoItem(e.target.innerText);
+};
+
+/* 입력창 팝업 토글 */
+const btn = document.querySelector(".popup-button");
+
+const displayForm = () => {
+  if (form.style.display === "none") {
+    form.style.display = "flex";
+  } else {
+    form.style.display = "none";
+  }
 };
 
 // 시작 함수

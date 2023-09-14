@@ -3,33 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="todo.css" />
     <title>Vanilla Todo</title>
-    <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
     <main>
-      <section class="container">
-        <article class="todo-input-items">
-          <button class="popup-button">INPUT TO DO</button>
-          <form class="todo-form">
-            <input class="todo-input" placeholder="" />
-            <button class="todo-input-button" type="submit">+</button>
-          </form>
-        </article>
+      <h2 class="todo-title">TODOLIST</h2>
+      <section class="todo-input-container">
+        <button class="popup-button">INPUT TO DO</button>
+        <form class="todo-form">
+          <button class="todo-input-button" type="submit">+</button>
+          <input class="todo-input" placeholder="" />
+        </form>
       </section>
       <section class="todo-container">
-        <article class="todo-contents">
-          <h3 class="todolist-title">TODO</h3>
-          <div class="todo-background">
-            <ul class="todo-list"></ul>
-          </div>
+        <article class="list-contents">
+          <h3 class="list-title">TODO</h3>
+          <ul class="todo-list"></ul>
         </article>
-        <article class="done-contents">
-          <h3 class="donelist-title">DONE</h3>
-          <div class="done-background">
-            <ul class="done-list"></ul>
-          </div>
+        <article class="list-contents">
+          <h3 class="list-title">DONE</h3>
+          <ul class="done-list"></ul>
         </article>
       </section>
     </main>

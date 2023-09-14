@@ -26,7 +26,7 @@ const printTodoItem = (text) => {
   const todoText = document.createElement("span");
   const todoDel = document.createElement("button");
 
-  todoItem.className = "todo-list-item";
+  todoItem.className = "list-item";
   todoText.className = "todo-item-text";
 
   todoText.innerText = text;
@@ -34,7 +34,7 @@ const printTodoItem = (text) => {
 
   // todo 삭제
   todoDel.innerText = "X";
-  todoDel.className = "todo-delete-button";
+  todoDel.className = "delete-button";
   todoDel.addEventListener("click", deleteTodoItem);
 
   // li에 item 추가
@@ -71,10 +71,10 @@ const printDoneItem = (text) => {
   doneText.addEventListener("click", toggleDoneToDo);
 
   doneDel.innerText = "X";
-  doneDel.className = "done-delete-button";
+  doneDel.className = "delete-button";
   doneDel.addEventListener("click", deleteDoneItem);
 
-  doneItem.className = "done-list-item";
+  doneItem.className = "list-item";
   doneItem.appendChild(doneText);
   doneItem.appendChild(doneDel);
 

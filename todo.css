@@ -129,6 +129,7 @@ body {
   width: 0;
   height: 20px;
   border-radius: 5px;
+  background-color: #7adb84;
   transition: width 0.3s ease-in-out;
 }
 

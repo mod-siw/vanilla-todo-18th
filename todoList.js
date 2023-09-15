@@ -160,10 +160,7 @@ const updateItemCount = () => {
   if (totalCount !== 0) {
     ratio = doneCount / totalCount;
   }
-
-  // 프로그래스 바에 그라데이션 적용
   progressBar.style.width = `${ratio * 100}%`;
-  progressBar.style.background = "#7adb84";
 };
 
 const init = () => {

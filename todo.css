@@ -135,6 +135,8 @@ body {
 .progress {
   margin: 0 15px 0 10px;
   width: 15%;
+  font-family: "SUITE-Regular";
+  font-weight: 900;
   color: #00c013;
   text-align: center;
   overflow: hidden;

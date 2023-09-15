@@ -19,7 +19,7 @@
   position: relative;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-between;
 
   max-width: 60%;
@@ -33,20 +33,58 @@
 .popup-button {
   border-radius: 10px;
   border: none;
-  margin: 0 0 0 10px;
+  margin: 0 10px;
+  width: 10%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  outline: none;
+  cursor: pointer;
 }
 
 .todo-form {
   display: none;
   flex-direction: row-reverse;
   margin: 0 10px;
-  width: 81%;
+  width: 88%;
 }
 
 .todo-input-button {
   border-radius: 10px;
   border: none;
   margin-left: 10px;
+}
+
+/* progress 부분 */
+.progress-container {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
+  width: 88%;
+}
+
+.progress-div {
+  width: 80%;
+  height: 20px;
+  background-color: #ddd;
+  border-radius: 5px;
+}
+
+.progress-bar {
+  width: 0;
+  height: 20px;
+  border-radius: 5px;
+  transition: width 0.3s ease-in-out;
+}
+
+.progress {
+  margin: 0 15px 0 10px;
+  width: 15%;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 /*todo content 부분*/
@@ -68,16 +106,15 @@
 }
 
 .list-title {
-  position: absolute;
-  top: 10px;
-  margin: 0 0 0 10px;
+  margin: 10px 0 10px 5px;
 }
 
 /* ul 부분 */
 .todo-list,
 .done-list {
   list-style: none;
-  padding: 20px 40px 0px 10px;
+  margin: 0 0 10px;
+  padding: 0px 30px 0px 10px;
 }
 
 .list-item {
@@ -86,6 +123,13 @@
   align-items: center;
 
   padding: 3px 0px;
+  transition: color 0.3s;
+  color: #000;
+  cursor: pointer;
+}
+
+.list-item:hover {
+  color: #4caf50;
 }
 
 .delete-button {
@@ -95,6 +139,7 @@
   height: 20px;
   border-radius: 5px;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .todo-input,

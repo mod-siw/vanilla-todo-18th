@@ -122,22 +122,6 @@ const toggleDoneToDo = (e) => {
   updateItemCount();
 };
 
-/* 입력창 팝업 토글 */
-const btn = document.querySelector(".popup-button");
-const form = document.querySelector(".todo-form");
-const progress = document.querySelector(".progress");
-
-const displayForm = () => {
-  if (form.style.display === "none") {
-    form.style.display = "flex";
-    progress.style.display = "none";
-  } else {
-    form.style.display = "none";
-    progress.style.display = "inline";
-    updateItemCount();
-  }
-};
-
 /* 오늘 날짜 */
 const getTodayDate = () => {
   const today = new Date();
@@ -147,6 +131,25 @@ const getTodayDate = () => {
   return `${year}.${month}.${day}.`;
 };
 
+/* 입력창 팝업 토글 */
+const btn = document.querySelector(".popup-button");
+const form = document.querySelector(".todo-form");
+const progressContainer = document.querySelector(".progress-container");
+const progressDiv = document.querySelector(".progress-div");
+const progressBar = document.querySelector(".progress-bar");
+const progress = document.querySelector(".progress");
+
+const displayForm = () => {
+  if (form.style.display === "none") {
+    form.style.display = "flex";
+    progressContainer.style.display = "none";
+  } else {
+    form.style.display = "none";
+    progressContainer.style.display = "flex";
+    updateItemCount();
+  }
+};
+
 /* 할 일 및 완료된 일 개수 업데이트 */
 const updateItemCount = () => {
   const todoCount = document.querySelectorAll(".todo-item-text").length;
@@ -154,6 +157,15 @@ const updateItemCount = () => {
   const totalCount = todoCount + doneCount;
   const countText = `${doneCount} / ${totalCount}`;
   progress.innerText = countText;
+
+  let ratio = 0;
+  if (totalCount !== 0) {
+    ratio = doneCount / totalCount;
+  }
+
+  // 프로그래스 바에 그라데이션 적용
+  progressBar.style.width = `${ratio * 100}%`;
+  progressBar.style.background = "#4CAF50";
 };
 
 const init = () => {

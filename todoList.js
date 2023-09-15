@@ -54,7 +54,6 @@ const printTodoItem = (text) => {
   todoText.addEventListener("click", toggleTodoToDone);
 
   // todo 삭제
-  todoDel.innerText = "✖️";
   todoDel.className = "delete-button";
   todoDel.addEventListener("click", deleteTodoItem);
 
@@ -95,7 +94,6 @@ const printDoneItem = (text) => {
   doneText.className = "done-item-text";
   doneText.addEventListener("click", toggleDoneToDo);
 
-  doneDel.innerText = "X";
   doneDel.className = "delete-button";
   doneDel.addEventListener("click", deleteDoneItem);
 
@@ -165,7 +163,7 @@ const updateItemCount = () => {
 
   // 프로그래스 바에 그라데이션 적용
   progressBar.style.width = `${ratio * 100}%`;
-  progressBar.style.background = "#4CAF50";
+  progressBar.style.background = "#7adb84";
 };
 
 const init = () => {

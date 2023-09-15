@@ -1,4 +1,30 @@
-const form = document.querySelector(".todo-form");
+/* Local Storage */
+// Local Storage에 할 일 목록 저장
+const saveTodoListToLocalStorage = () => {
+  const todoListItems = document.querySelectorAll(".todo-item-text");
+  const doneListItems = document.querySelectorAll(".done-item-text");
+
+  const todoItems = Array.from(todoListItems).map((item) => item.innerText);
+  const doneItems = Array.from(doneListItems).map((item) => item.innerText);
+
+  localStorage.setItem("todoList", JSON.stringify(todoItems));
+  localStorage.setItem("doneList", JSON.stringify(doneItems));
+};
+
+// Local Storage에서 할 일 목록 불러오기
+const loadTodoListFromLocalStorage = () => {
+  const todoList = localStorage.getItem("todoList");
+  if (todoList) {
+    const todoItems = JSON.parse(todoList);
+    todoItems.forEach((item) => printTodoItem(item));
+  }
+
+  const doneList = localStorage.getItem("doneList");
+  if (doneList) {
+    const doneItems = JSON.parse(doneList);
+    doneItems.forEach((item) => printDoneItem(item));
+  }
+};
 
 /* todo 추가 + 삭제 기능 */
 
@@ -9,6 +35,7 @@ const addTodoItem = () => {
   const todoContent = document.querySelector(".todo-input").value;
   if (todoContent) {
     printTodoItem(todoContent);
+    saveTodoListToLocalStorage();
   } else {
     alert("할 일을 입력하세요!");
   }
@@ -44,6 +71,8 @@ const printTodoItem = (text) => {
 const deleteTodoItem = (e) => {
   const target = e.target.parentNode; //해당 todo item 다 삭제해야 하므로 이동
   document.querySelector(".todo-list").removeChild(target);
+  saveTodoListToLocalStorage();
+  updateItemCount();
 };
 
 /* todo -> done 이동 + done 표시 */
@@ -52,6 +81,8 @@ const deleteTodoItem = (e) => {
 const toggleTodoToDone = (e) => {
   deleteTodoItem(e);
   printDoneItem(e.target.innerText);
+  saveTodoListToLocalStorage();
+  updateItemCount();
 };
 
 // 끝낸 일 출력
@@ -79,26 +110,35 @@ const printDoneItem = (text) => {
 const deleteDoneItem = (e) => {
   const target = e.target.parentNode;
   document.querySelector(".done-list").removeChild(target);
+  saveTodoListToLocalStorage();
+  updateItemCount();
 };
 
 // done -> todo 이동
 const toggleDoneToDo = (e) => {
   deleteDoneItem(e);
   printTodoItem(e.target.innerText);
+  saveTodoListToLocalStorage();
+  updateItemCount();
 };
 
 /* 입력창 팝업 토글 */
 const btn = document.querySelector(".popup-button");
+const form = document.querySelector(".todo-form");
+const progress = document.querySelector(".progress");
 
 const displayForm = () => {
   if (form.style.display === "none") {
     form.style.display = "flex";
+    progress.style.display = "none";
   } else {
     form.style.display = "none";
+    progress.style.display = "inline";
+    updateItemCount();
   }
 };
 
-// 오늘 날짜를 가져오는 함수
+/* 오늘 날짜 */
 const getTodayDate = () => {
   const today = new Date();
   const year = today.getFullYear();
@@ -107,12 +147,24 @@ const getTodayDate = () => {
   return `${year}.${month}.${day}.`;
 };
 
+/* 할 일 및 완료된 일 개수 업데이트 */
+const updateItemCount = () => {
+  const todoCount = document.querySelectorAll(".todo-item-text").length;
+  const doneCount = document.querySelectorAll(".done-item-text").length;
+  const totalCount = todoCount + doneCount;
+  const countText = `${doneCount} / ${totalCount}`;
+  progress.innerText = countText;
+};
+
 const init = () => {
   form.addEventListener("submit", addTodoItem);
   btn.addEventListener("click", displayForm);
 
   const dateSpan = document.querySelector(".date");
   dateSpan.innerText = getTodayDate();
+
+  loadTodoListFromLocalStorage();
+  updateItemCount();
 };
 
 // 시작 함수

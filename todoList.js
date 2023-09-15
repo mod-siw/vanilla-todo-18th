@@ -1,10 +1,4 @@
-// 초기화 함수
 const form = document.querySelector(".todo-form");
-
-const init = () => {
-  form.addEventListener("submit", addTodoItem);
-  btn.addEventListener("click", displayForm);
-};
 
 /* todo 추가 + 삭제 기능 */
 
@@ -33,7 +27,7 @@ const printTodoItem = (text) => {
   todoText.addEventListener("click", toggleTodoToDone);
 
   // todo 삭제
-  todoDel.innerText = "X";
+  todoDel.innerText = "✖️";
   todoDel.className = "delete-button";
   todoDel.addEventListener("click", deleteTodoItem);
 
@@ -102,6 +96,23 @@ const displayForm = () => {
   } else {
     form.style.display = "none";
   }
+};
+
+// 오늘 날짜를 가져오는 함수
+const getTodayDate = () => {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const day = String(today.getDate()).padStart(2, "0");
+  return `${year}.${month}.${day}.`;
+};
+
+const init = () => {
+  form.addEventListener("submit", addTodoItem);
+  btn.addEventListener("click", displayForm);
+
+  const dateSpan = document.querySelector(".date");
+  dateSpan.innerText = getTodayDate();
 };
 
 // 시작 함수

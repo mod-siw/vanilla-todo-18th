@@ -1,7 +1,16 @@
 /*topbar 부분*/
-.todo-title {
+.top-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
   max-width: 60%;
   margin: 20px auto;
+}
+
+.todo-title {
+  margin: 0;
 }
 
 /*todo input 부분*/
@@ -27,10 +36,10 @@
 }
 
 .todo-form {
-  display: flex;
+  display: none;
   flex-direction: row-reverse;
   margin: 0 10px;
-  width: 83%;
+  width: 81%;
 }
 
 .todo-input-button {
